@@ -1,4 +1,5 @@
-from flask import Flask, request, abort
+
+from flask import Flask, request, abort, make_response
 import os, requests, json
 
 from linebot import (
@@ -13,7 +14,6 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-#環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 
@@ -42,6 +42,18 @@ def callback():
         abort(400)
 
     return 'OK'
+
+@app.route("/mp3/<string:file_name>", methods=['GET'])
+def getMP3File(file_name):
+    response = make_response()
+
+    if not os.path.exists(file_name):
+        return response
+
+    response.data = open(file_name, "rb").read()
+    response.headers['Content-Disposition'] = 'attachment; filename=' + file_name 
+    response.mimetype = 'audio/mp3'
+    return response
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
