@@ -56,30 +56,6 @@ def getMP3File(file_name):
     response.mimetype = 'audio/mp3'
     return response
 
-@app.route('/talks/<file_path:path>')
-def get_talk_mp3(file_path):
-    return static_file(file_path, root=TALK_DIR)
-
-@app.route('/form', method='POST')
-def post_talk_form():
-    """トークテキストを保存して、再生指示"""
-    text_token = generate_talk(request.forms.text, request.forms.lang)
-    # 面倒なので、目についたGoogleCast端末に決め打ち
-    chromecasts = pychromecast.get_chromecasts()
-    chromecasts[0].media_controller.play_media(
-        f"http://zazen-api-001.herokuapp.com/talks/{text_token}", 'audio/mp3')
-    return hello()
-
-
-def generate_talk(text, lang):
-    """言語もテキストも一致したらキャッシュを使うように"""
-    text_token = hashlib.sha256((lang + text).encode()).hexdigest()
-    talk_path = TALK_DIR / text_token
-    if not talk_path.exists():
-        tts = gTTS(text=text, lang=lang)
-        tts.save(talk_path)
-    return text_token
-
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
