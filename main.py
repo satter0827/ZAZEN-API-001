@@ -93,7 +93,7 @@ def handle_message(event):
         }))
 
         WEB_HOOK_GOOGLE = "http://zazen-api-001.herokuapp.com/talks/form"
-        requests.post(WEB_HOOK_URL, data = json.dumps({
+        requests.post(WEB_HOOK_GOOGLE, data = json.dumps({
             'text': u'テスト音声再生中・テスト音声再生中',  #通知内容
             'lang': u'ja',  #ユーザー名
         }))
