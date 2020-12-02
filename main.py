@@ -56,7 +56,7 @@ def getMP3File(file_name):
     response.mimetype = 'audio/mp3'
     return response
 
-@app.route('/form', method=['GET'])
+@app.route("/form", methods=['GET'])
 def post_talk_form():
     # 面倒なので、目についたGoogleCast端末に決め打ち
     chromecasts = pychromecast.get_chromecasts()
