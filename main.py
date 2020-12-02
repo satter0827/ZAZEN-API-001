@@ -43,15 +43,27 @@ def callback():
 
     return 'OK'
 
+@app.route("/mp3/<string:file_name>", methods=['GET'])
+def getMP3File(file_name):
+    response = make_response()
+
+    if not os.path.exists(file_name):
+        return response
+
+    response.data = open(file_name, "rb").read()
+    response.headers['Content-Disposition'] = 'attachment; filename=' + file_name 
+    response.mimetype = 'audio/mp3'
+    return response
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if (event.message.text == "座禅を始めて"):
         hento = "座禅を始めます"
 
         WEB_HOOK_OBNIZ = "https://yuasa-test-app01.us-south.cf.appdomain.cloud/"
-        requests.get(WEB_HOOK_OBNIZ)
+        requests.post(WEB_HOOK_OBNIZ)
 
-        WEB_HOOK_GOOGLE = "https://8b3d10f0db39.ngrok.io/mp3"
+        WEB_HOOK_GOOGLE = "http://zazen-api-001.herokuapp.com/talks/form"
         requests.get(WEB_HOOK_GOOGLE)
     else:
         hento = event.message.text
