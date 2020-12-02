@@ -63,7 +63,7 @@ def handle_message(event):
         WEB_HOOK_OBNIZ = "https://yuasa-test-app01.us-south.cf.appdomain.cloud/"
         requests.post(WEB_HOOK_OBNIZ)
 
-        WEB_HOOK_GOOGLE = "http://zazen-api-001.herokuapp.com/talks/form"
+        WEB_HOOK_GOOGLE = "https://8b3d10f0db39.ngrok.io/mp3"
         requests.get(WEB_HOOK_GOOGLE)
     else:
         hento = event.message.text
