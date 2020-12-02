@@ -65,14 +65,14 @@ def handle_message(event):
 
         WEB_HOOK_GOOGLE = "https://45acb4b3c867.ngrok.io/mp3/start"
         requests.get(WEB_HOOK_GOOGLE)
-        
-    if else (event.message.text == "座禅を終了して")
+
+    else if (event.message.text == "座禅を終了して")
         hento = "座禅を終わります"
 
         WEB_HOOK_GOOGLE = "https://45acb4b3c867.ngrok.io/mp3/end"
         requests.get(WEB_HOOK_GOOGLE)
 
-    if else (event.message.text == "喝を入れて")
+    else if (event.message.text == "喝を入れて")
         hento = "喝!!!"
 
         WEB_HOOK_GOOGLE = "https://45acb4b3c867.ngrok.io/mp3/shout"
