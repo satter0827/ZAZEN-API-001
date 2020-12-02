@@ -56,10 +56,8 @@ def getMP3File(file_name):
     response.mimetype = 'audio/mp3'
     return response
 
-@app.route('/form', method='POST')
+@app.route('/form', method='GET')
 def post_talk_form():
-    """トークテキストを保存して、再生指示"""
-    text_token = generate_talk(request.forms.text, request.forms.lang)
     # 面倒なので、目についたGoogleCast端末に決め打ち
     chromecasts = pychromecast.get_chromecasts()
     chromecasts[0].media_controller.play_media(
