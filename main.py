@@ -56,6 +56,10 @@ def getMP3File(file_name):
     response.mimetype = 'audio/mp3'
     return response
 
+@app.route('/form', method='GET')
+def post_talk_form():
+    # 面倒なので、目についたGoogleCast端末に決め打ち
+    return hello()
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
