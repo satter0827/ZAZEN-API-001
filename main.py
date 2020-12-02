@@ -56,13 +56,6 @@ def getMP3File(file_name):
     response.mimetype = 'audio/mp3'
     return response
 
-@app.route('/form', method='GET')
-def post_talk_form():
-    # 面倒なので、目についたGoogleCast端末に決め打ち
-    chromecasts = pychromecast.get_chromecasts()
-    chromecasts[0].media_controller.play_media(
-        f"http://zazen-api-001.herokuapp.com/mp3/message.mp3", 'audio/mp3')
-    return hello()
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
