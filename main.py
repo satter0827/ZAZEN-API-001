@@ -37,12 +37,6 @@ def callback():
     # handle webhook body
     try:
         handler.handle(body, signature)
-
-        WEB_HOOK_URL = "https://yuasa-test-app01.us-south.cf.appdomain.cloud/"
-        requests.post(WEB_HOOK_URL, data = json.dumps({
-            'text': u'Notifycation From Heroku.',  #通知内容
-            'username': u'osho-line-bot',  #ユーザー名
-        }))
         
     except InvalidSignatureError:
         abort(400)
@@ -53,6 +47,12 @@ def callback():
 def handle_message(event):
     if (event.message.text == "座禅を始めて"):
         hento = "座禅を始めます"
+
+        WEB_HOOK_URL = "https://yuasa-test-app01.us-south.cf.appdomain.cloud/"
+        requests.post(WEB_HOOK_URL, data = json.dumps({
+            'text': u'Notifycation From Heroku.',  #通知内容
+            'username': u'osho-line-bot',  #ユーザー名
+        }))
     else:
         hento = event.message.text
 
