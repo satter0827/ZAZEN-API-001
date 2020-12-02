@@ -49,10 +49,7 @@ def handle_message(event):
         hento = "座禅を始めます"
 
         WEB_HOOK_OBNIZ = "https://yuasa-test-app01.us-south.cf.appdomain.cloud/"
-        requests.post(WEB_HOOK_OBNIZ, data = json.dumps({
-            'text': u'Notifycation From Heroku.',  #通知内容
-            'username': u'osho-line-bot',  #ユーザー名
-        }))
+        requests.get(WEB_HOOK_OBNIZ)
 
         WEB_HOOK_GOOGLE = "https://8b3d10f0db39.ngrok.io/mp3"
         requests.get(WEB_HOOK_GOOGLE)
