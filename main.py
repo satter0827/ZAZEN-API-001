@@ -1,4 +1,3 @@
-
 from flask import Flask, request, abort, make_response
 from gtts import gTTS
 import os, requests, json, pychromecast
@@ -44,26 +43,6 @@ def callback():
 
     return 'OK'
 
-@app.route("/mp3/<string:file_name>", methods=['GET'])
-def getMP3File(file_name):
-    response = make_response()
-
-    if not os.path.exists(file_name):
-        return response
-
-    response.data = open(file_name, "rb").read()
-    response.headers['Content-Disposition'] = 'attachment; filename=' + file_name 
-    response.mimetype = 'audio/mp3'
-    return response
-
-@app.route("/form", methods=['GET'])
-def post_talk_form():
-    # 面倒なので、目についたGoogleCast端末に決め打ち
-    chromecasts = pychromecast.get_chromecasts()
-    chromecasts[0].media_controller.play_media(
-        f"http://zazen-api-001.herokuapp.com/mp3/message.mp3", 'audio/mp3')
-    return hello()
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if (event.message.text == "座禅を始めて"):
@@ -75,11 +54,8 @@ def handle_message(event):
             'username': u'osho-line-bot',  #ユーザー名
         }))
 
-        WEB_HOOK_GOOGLE = "http://zazen-api-001.herokuapp.com/talks/form"
-        requests.post(WEB_HOOK_GOOGLE, data = json.dumps({
-            'text': u'テスト音声再生中・テスト音声再生中',  #通知内容
-            'lang': u'ja',  #ユーザー名
-        }))
+        WEB_HOOK_GOOGLE = "https://8b3d10f0db39.ngrok.io/mp3"
+        requests.get(WEB_HOOK_GOOGLE)
     else:
         hento = event.message.text
 
