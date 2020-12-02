@@ -57,14 +57,27 @@ def getMP3File(file_name):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if (event.message.text == "座禅を始めて"):
+    if (event.message.text == "座禅を開始して"):
         hento = "座禅を始めます"
 
         WEB_HOOK_OBNIZ = "https://yuasa-test-app01.us-south.cf.appdomain.cloud/"
         requests.post(WEB_HOOK_OBNIZ)
 
-        WEB_HOOK_GOOGLE = "https://8b3d10f0db39.ngrok.io/mp3"
+        WEB_HOOK_GOOGLE = "https://45acb4b3c867.ngrok.io/mp3/start"
         requests.get(WEB_HOOK_GOOGLE)
+        
+    if else (event.message.text == "座禅を終了して")
+        hento = "座禅を終わります"
+
+        WEB_HOOK_GOOGLE = "https://45acb4b3c867.ngrok.io/mp3/end"
+        requests.get(WEB_HOOK_GOOGLE)
+
+    if else (event.message.text == "喝を入れて")
+        hento = "喝!!!"
+
+        WEB_HOOK_GOOGLE = "https://45acb4b3c867.ngrok.io/mp3/shout"
+        requests.get(WEB_HOOK_GOOGLE)
+
     else:
         hento = event.message.text
 
