@@ -44,9 +44,14 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    if (event.message.txt == "座禅を初めて"):
+        hento = "座禅を始めます"
+    else:
+        hento = event.message.text
+        
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text=hento))
 
 if __name__ == "__main__":
 #    app.run()
