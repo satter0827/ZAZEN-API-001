@@ -60,22 +60,28 @@ def handle_message(event):
     if (event.message.text == "座禅を開始して"):
         hento = "座禅を始めます"
 
-        WEB_HOOK_OBNIZ = "https://yuasa-test-app01.us-south.cf.appdomain.cloud/"
+        WEB_HOOK_OBNIZ = "https://obniz.com/events/1512/BTca5D9lB2kHYP8nrqbapur3JIlw6fpR/run"
         requests.post(WEB_HOOK_OBNIZ)
 
-        WEB_HOOK_GOOGLE = "https://45acb4b3c867.ngrok.io/mp3/start"
+        WEB_HOOK_GOOGLE = "https://c40e66b6eaee.ngrok.io/mp3/start"
         requests.get(WEB_HOOK_GOOGLE)
 
     elif (event.message.text == "座禅を終了して"):
         hento = "座禅を終わります"
 
-        WEB_HOOK_GOOGLE = "https://45acb4b3c867.ngrok.io/mp3/end"
+        WEB_HOOK_GOOGLE = "https://obniz.com/events/1512/BTca5D9lB2kHYP8nrqbapur3JIlw6fpR/run"
+        requests.get(WEB_HOOK_GOOGLE)
+
+        WEB_HOOK_GOOGLE = "https://c40e66b6eaee.ngrok.io/mp3/start"
         requests.get(WEB_HOOK_GOOGLE)
 
     elif (event.message.text == "喝を入れて"):
         hento = "喝!!!"
 
-        WEB_HOOK_GOOGLE = "https://45acb4b3c867.ngrok.io/mp3/shout"
+        WEB_HOOK_GOOGLE = "https://obniz.com/events/1512/BTca5D9lB2kHYP8nrqbapur3JIlw6fpR/run"
+        requests.get(WEB_HOOK_GOOGLE)
+
+        WEB_HOOK_GOOGLE = "https://c40e66b6eaee.ngrok.io/mp3/start"
         requests.get(WEB_HOOK_GOOGLE)
 
     else:
